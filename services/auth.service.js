@@ -40,7 +40,6 @@ const requestPasswordReset = async (email) => {
 
   let resetToken = randomBytes(32).toString("hex");
   const hash = await _hash(resetToken, Number(bcryptSalt));
-
   await new Token({
     userId: user._id,
       token: hash,
