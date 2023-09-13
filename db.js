@@ -1,7 +1,11 @@
-const mongoose = require("mongoose");
+import dotenv from 'dotenv'
+import mongoose  from "mongoose";
+dotenv.config({path:"/home/my/Desktop/forgotpassword/.env.example"})
 let DB_URL = process.env.DB_URL;
 
-module.exports = async function connection() {
+
+export default async function connection() {
+  console.log(DB_URL)
   try {
     await mongoose.connect(
       DB_URL,

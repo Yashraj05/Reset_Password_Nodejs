@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const Schema = mongoose.Schema;
+import mongoose from "mongoose";
+import { hash as _hash } from "bcrypt";
+;
 const bcryptSalt = process.env.BCRYPT_SALT;
 
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -28,9 +28,9 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
   }
-  const hash = await bcrypt.hash(this.password, Number(bcryptSalt));
+  const hash = await _hash(this.password, Number(bcryptSalt));
   this.password = hash;
   next();
 });
 
-module.exports = mongoose.model("user", userSchema);
+export default mongoose.model("user", userSchema);

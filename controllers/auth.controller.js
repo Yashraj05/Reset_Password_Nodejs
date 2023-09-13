@@ -1,8 +1,4 @@
-const {
-  signup,
-  requestPasswordReset,
-  resetPassword,
-} = require("../services/auth.service");
+import { signup, requestPasswordReset, resetPassword } from "../services/auth.service.js";
 
 const signUpController = async (req, res, next) => {
   const signupService = await signup(req.body);
@@ -25,7 +21,7 @@ const resetPasswordController = async (req, res, next) => {
   return res.json(resetPasswordService);
 };
 
-module.exports = {
+export {
   signUpController,
   resetPasswordRequestController,
   resetPasswordController,
